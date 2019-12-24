@@ -46,6 +46,68 @@ public class ConvexTest {
                 if (intersect) {
                     count++;
                 }
+                //УСЛОВИЯ
+                //если две точки отрезка лежат на прямоугольнике
+                if (pointsFigure[i].y == pointsRectangle[0].y && pointsFigure[i + 1].y == pointsRectangle[0].y && !((pointsFigure[i].x <= pointsRectangle[0].x && pointsFigure[i].x <= pointsRectangle[3].x && pointsFigure[i + 1].x <= pointsRectangle[0].x && pointsFigure[i + 1].x <= pointsRectangle[3].x) || (pointsFigure[i].x >= pointsRectangle[0].x && pointsFigure[i].x >= pointsRectangle[3].x && pointsFigure[i + 1].x >= pointsRectangle[0].x && pointsFigure[i + 1].x >= pointsRectangle[3].x))) {
+                    System.out.println("Бесконечность - не предел");
+                    return count = 0;
+                }
+                if (pointsFigure[i].y == pointsRectangle[1].y && pointsFigure[i + 1].y == pointsRectangle[1].y && !((pointsFigure[i].x <= pointsRectangle[1].x && pointsFigure[i].x <= pointsRectangle[2].x && pointsFigure[i + 1].x <= pointsRectangle[1].x && pointsFigure[i + 1].x <= pointsRectangle[2].x) || (pointsFigure[i].x >= pointsRectangle[1].x && pointsFigure[i].x >= pointsRectangle[2].x && pointsFigure[i + 1].x >= pointsRectangle[1].x && pointsFigure[i + 1].x >= pointsRectangle[2].x))) {
+                    System.out.println("Бесконечность - не предел");
+                    return count = 0;
+                }
+                if (pointsFigure[i].x == pointsRectangle[0].x && pointsFigure[i + 1].x == pointsRectangle[0].x && !((pointsFigure[i].y <= pointsRectangle[0].y && pointsFigure[i].y <= pointsRectangle[1].y && pointsFigure[i + 1].y <= pointsRectangle[0].y && pointsFigure[i + 1].y <= pointsRectangle[1].x) || (pointsFigure[i].y >= pointsRectangle[0].y && pointsFigure[i].y >= pointsRectangle[1].y && pointsFigure[i + 1].y >= pointsRectangle[0].y && pointsFigure[i + 1].y >= pointsRectangle[1].y))) {
+                    System.out.println("Бесконечность - не предел");
+                    return count = 0;
+                }
+                if (pointsFigure[i].x == pointsRectangle[2].x && pointsFigure[i + 1].x == pointsRectangle[2].x && !((pointsFigure[i].y <= pointsRectangle[2].y && pointsFigure[i].y <= pointsRectangle[3].y && pointsFigure[i + 1].y <= pointsRectangle[2].y && pointsFigure[i + 1].y <= pointsRectangle[3].x) || (pointsFigure[i].y >= pointsRectangle[2].y && pointsFigure[i].y >= pointsRectangle[3].y && pointsFigure[i + 1].y >= pointsRectangle[2].y && pointsFigure[i + 1].y >= pointsRectangle[3].y))) {
+                    System.out.println("Бесконечность - не предел");
+                    return count = 0;
+                }
+                //уменьшение счетчика, если точки лежат на гранях прямоугольника
+                if (pointsFigure.length > 2) {
+                    if (pointsFigure[i].x == pointsRectangle[0].x && pointsFigure[i].y >= pointsRectangle[0].y && pointsFigure[i].y <= pointsRectangle[1].y || pointsFigure[i].y == pointsRectangle[1].y && pointsFigure[i].x >= pointsRectangle[1].x && pointsFigure[i].x <= pointsRectangle[2].x || pointsFigure[i].x == pointsRectangle[2].x && pointsFigure[i].y >= pointsRectangle[3].y && pointsFigure[i].y <= pointsRectangle[2].y || pointsFigure[i].y == pointsRectangle[3].y && pointsFigure[i].x >= pointsRectangle[0].x && pointsFigure[i].x <= pointsRectangle[3].x) {
+                        count -= 0.25;
+                    }
+                }
+                if (pointsFigure.length > 2) {
+                    if (pointsFigure[i].x == pointsRectangle[0].x && pointsFigure[i].y <= pointsRectangle[0].y && pointsFigure[i].y >= pointsRectangle[1].y || pointsFigure[i].y == pointsRectangle[1].y && pointsFigure[i].x >= pointsRectangle[2].x && pointsFigure[i].x <= pointsRectangle[1].x || pointsFigure[i].x == pointsRectangle[2].x && pointsFigure[i].y >= pointsRectangle[2].y && pointsFigure[i].y <= pointsRectangle[3].y || pointsFigure[i].y == pointsRectangle[3].y && pointsFigure[i].x >= pointsRectangle[3].x && pointsFigure[i].x <= pointsRectangle[0].x) {
+                        count -= 0.25;
+                    }
+                }
+                //уменьшение счетчика, если точки лежат в вершинах прямоугольника
+                if (pointsFigure.length == 2) {
+                    if (pointsFigure[i].x == pointsRectangle[0].x && pointsFigure[i].y == pointsRectangle[0].y && pointsFigure[i + 1].x == pointsRectangle[2].x && pointsFigure[i + 1].y == pointsRectangle[2].y || pointsFigure[i].x == pointsRectangle[3].x && pointsFigure[i].y == pointsRectangle[3].y && pointsFigure[i + 1].x == pointsRectangle[1].x && pointsFigure[i + 1].y == pointsRectangle[1].y) {
+                        count -= 0.5;
+                    } else if (pointsFigure[i].x == pointsRectangle[2].x && pointsFigure[i].y == pointsRectangle[2].y && pointsFigure[i + 1].x == pointsRectangle[0].x && pointsFigure[i + 1].y == pointsRectangle[0].y || pointsFigure[i].x == pointsRectangle[1].x && pointsFigure[i].y == pointsRectangle[1].y && pointsFigure[i + 1].x == pointsRectangle[3].x && pointsFigure[i + 1].y == pointsRectangle[3].y) {
+                        count -= 0.5;
+                    }
+                }
+                if (pointsFigure[i].x==pointsRectangle[0].x && pointsFigure[i].y==pointsRectangle[0].y || pointsFigure[i].x==pointsRectangle[1].x && pointsFigure[i].y==pointsRectangle[1].y || pointsFigure[i].x==pointsRectangle[2].x && pointsFigure[i].y==pointsRectangle[2].y ||pointsFigure[i].x==pointsRectangle[3].x && pointsFigure[i].y==pointsRectangle[3].y) {
+                    if (pointsFigure[i + 1].x != pointsRectangle[0].x && pointsFigure[i + 1].y != pointsRectangle[0].y && pointsFigure[i + 1].x != pointsRectangle[1].x && pointsFigure[i + 1].y != pointsRectangle[1].y && pointsFigure[i + 1].x != pointsRectangle[2].x && pointsFigure[i + 1].y != pointsRectangle[2].y && pointsFigure[i + 1].x != pointsRectangle[3].x && pointsFigure[i + 1].y != pointsRectangle[3].y) {
+                        count -=0.5;
+                    }
+                }
+                if (pointsFigure[i+1].x==pointsRectangle[0].x && pointsFigure[i+1].y==pointsRectangle[0].y || pointsFigure[i+1].x==pointsRectangle[1].x && pointsFigure[i+1].y==pointsRectangle[1].y || pointsFigure[i+1].x==pointsRectangle[2].x && pointsFigure[i+1].y==pointsRectangle[2].y ||pointsFigure[i+1].x==pointsRectangle[3].x && pointsFigure[i+1].y==pointsRectangle[3].y) {
+                    if (pointsFigure[i].x != pointsRectangle[0].x && pointsFigure[i].y != pointsRectangle[0].y && pointsFigure[i].x != pointsRectangle[1].x && pointsFigure[i].y != pointsRectangle[1].y && pointsFigure[i].x != pointsRectangle[2].x && pointsFigure[i].y != pointsRectangle[2].y && pointsFigure[i].x != pointsRectangle[3].x && pointsFigure[i].y != pointsRectangle[3].y) {
+                        count -=0.5;
+                    }
+                }
+            }
+        }
+
+        if (pointsFigure.length == 1) {
+            if (((pointsFigure[0].x >= pointsRectangle[0].x && pointsFigure[0].x <= pointsRectangle[3].x) || ((pointsFigure[0].x <= pointsRectangle[0].x && pointsFigure[0].x >= pointsRectangle[3].x))) && pointsFigure[0].y == pointsRectangle[0].y) {
+                count = 1;
+            }
+            if (((pointsFigure[0].x >= pointsRectangle[1].x && pointsFigure[0].x <= pointsRectangle[2].x) || (pointsFigure[0].x <= pointsRectangle[1].x && pointsFigure[0].x >= pointsRectangle[2].x)) && pointsFigure[0].y == pointsRectangle[1].y) {
+                count = 1;
+            }
+            if ((pointsFigure[0].y >= pointsRectangle[0].y && pointsFigure[0].y <= pointsRectangle[1].y && pointsFigure[0].x == pointsRectangle[0].x) || (pointsFigure[0].y >= pointsRectangle[2].y && pointsFigure[0].y <= pointsRectangle[3].y && pointsFigure[0].x == pointsRectangle[3].x)) {
+                count = 1;
+            }
+            if ((pointsFigure[0].y >= pointsRectangle[3].y && pointsFigure[0].y <= pointsRectangle[2].y && pointsFigure[0].x == pointsRectangle[3].x) || (pointsFigure[0].y >= pointsRectangle[1].y && pointsFigure[0].y <= pointsRectangle[0].y && pointsFigure[0].x == pointsRectangle[0].x)) {
+                count = 1;
             }
         }
         return count;
